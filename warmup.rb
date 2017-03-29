@@ -96,25 +96,3 @@ end
 my_proc = Proc.new{|item| item.even?}
 #[1,2,5].my_select(my_proc)
 [1,2,5].my_select {|item| item.even?}
-
-## Rock, Paper, Scissors
-def hand(input="")
-  value = 0
-    if input.downcase == "scissors"
-      value = 0
-    elsif input.downcase == "rock"
-      value = 1
-    elsif input.downcase == "paper"
-      value = 2
-    else
-      puts "Please make a choice - rock, paper, or scissors"
-    end
-    value
-end
-
-def
-
-def play
-  puts hand(gets.chomp)
-end
-play
