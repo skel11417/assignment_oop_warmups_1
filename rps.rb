@@ -52,10 +52,9 @@ class Game
         puts msg
         puts
       else
-        puts "Please choose between Rock, Paper, or Scissors"
+        Game.new.play
       end
     end
 end
 
-test = Game.new
-test.play
+Game.new.play

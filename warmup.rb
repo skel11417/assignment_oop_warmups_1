@@ -45,6 +45,7 @@ my_benchmark(1000) {puts "hi"}
 
 #Warmup 3
 #my each
+puts "my each:"
 class Array
   def my_each
     len = self.length
@@ -53,13 +54,14 @@ class Array
       yield(self.at(i))
       i += 1
     end
-    self
+    return self
   end
 end
 
 [1,2,5].my_each{ |item| puts item }
 
 #my map
+puts "my map:"
 class Array
   def my_map
     len = self.length
@@ -81,11 +83,13 @@ end
 puts result.to_s
 
 #my select
+puts "my_select:"
 class Array
   def my_select(&block)
     output = []
     self.my_each do |num|
-      if block.call(num) == true
+      result = block.call(num)
+      if result == true
         output << num
       end
     end
@@ -94,5 +98,28 @@ class Array
 end
 
 my_proc = Proc.new{|item| item.even?}
-#[1,2,5].my_select(my_proc)
-[1,2,5].my_select {|item| item.even?}
+puts [1,2,5].my_select(&my_proc)
+puts [1,2,5].my_select {|item| item.even?}
+
+#my_aLL
+puts "my all:"
+class Array
+  def my_all?(&block)
+    output = []
+    self.my_each do |num|
+      if block.call(num) == false
+        return false
+      end
+    end
+    return true
+  end
+end
+
+puts [1,2,5].my_all?(&my_proc)
+puts [2,2,100].my_all?(&my_proc)
+
+#my inject
+puts "my_inject"
+class Array
+  def my_inject
+    
